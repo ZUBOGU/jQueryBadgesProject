@@ -4,12 +4,14 @@ $(function() {
   $.ajax('https://www.codeschool.com/users/3302389.json', {
   	dataType: 'jsonp',
   	success: function(response) {
+  		console.log('response', response.courses.completed);;
   		for (var e in response.courses.completed) {
-  			$('#badges').append('<div class="course">' + e + '</div>');
+  		 	$('#badges').append('<div class="course"></div>');
+  		 	var course = response.courses.completed[e];
+  		 	$('#badges .course:nth-child('+ e + 1 + ')').append('<h3>' + course.title + '</h3>');
+  		 	$('#badges .course:nth-child('+ e + 1+ ')').append('<img src=' + course.badge + '>');
   		}
-  		$('.course').append('<h3>' + $('.course').closest('title') + '</h3'>);
-  		$('.course').append('<img src=' + $('.course').closest('badge') + '>');
-  		$('.course').append('<a href=' +$('.course').closest('url') +  'target = "_blank"></a>');
+  		// $('.course').append('<a href=' +$('.course').closest('url') +  'target = "_blank"></a>');
   	}
   });
 });
